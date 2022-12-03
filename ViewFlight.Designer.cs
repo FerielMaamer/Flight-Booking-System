@@ -32,30 +32,35 @@
             this.viewFlightId = new System.Windows.Forms.TextBox();
             this.lvViewFlight = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
+            this.viewFlightBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 91);
+            this.label1.Location = new System.Drawing.Point(52, 112);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Flight ID";
             // 
             // viewFlightId
             // 
-            this.viewFlightId.Location = new System.Drawing.Point(154, 88);
+            this.viewFlightId.Location = new System.Drawing.Point(205, 108);
+            this.viewFlightId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.viewFlightId.Name = "viewFlightId";
-            this.viewFlightId.Size = new System.Drawing.Size(125, 20);
+            this.viewFlightId.Size = new System.Drawing.Size(165, 22);
             this.viewFlightId.TabIndex = 1;
+            this.viewFlightId.TextChanged += new System.EventHandler(this.viewFlightId_TextChanged);
             // 
             // lvViewFlight
             // 
             this.lvViewFlight.HideSelection = false;
-            this.lvViewFlight.Location = new System.Drawing.Point(59, 190);
+            this.lvViewFlight.Location = new System.Drawing.Point(79, 234);
+            this.lvViewFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lvViewFlight.Name = "lvViewFlight";
-            this.lvViewFlight.Size = new System.Drawing.Size(525, 198);
+            this.lvViewFlight.Size = new System.Drawing.Size(699, 243);
             this.lvViewFlight.TabIndex = 2;
             this.lvViewFlight.UseCompatibleStateImageBehavior = false;
             // 
@@ -63,21 +68,34 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(56, 32);
+            this.label2.Location = new System.Drawing.Point(75, 39);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(289, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "To view a specific flight, enter the flight ID below:";
             // 
+            // viewFlightBtn
+            // 
+            this.viewFlightBtn.Location = new System.Drawing.Point(236, 173);
+            this.viewFlightBtn.Name = "viewFlightBtn";
+            this.viewFlightBtn.Size = new System.Drawing.Size(114, 23);
+            this.viewFlightBtn.TabIndex = 4;
+            this.viewFlightBtn.Text = "View Flight";
+            this.viewFlightBtn.UseVisualStyleBackColor = true;
+            this.viewFlightBtn.Click += new System.EventHandler(this.viewFlightBtn_Click);
+            // 
             // ViewFlight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.viewFlightBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lvViewFlight);
             this.Controls.Add(this.viewFlightId);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ViewFlight";
             this.Text = "ViewFlight";
             this.ResumeLayout(false);
@@ -91,5 +109,6 @@
         private System.Windows.Forms.TextBox viewFlightId;
         private System.Windows.Forms.ListView lvViewFlight;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button viewFlightBtn;
     }
 }

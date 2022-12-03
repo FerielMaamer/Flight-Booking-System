@@ -75,8 +75,13 @@ namespace OOPproject_form
             return false;
         }
 
+        public string viewAllBookings()
+        {
+            return bm.viewAllBookings();
+        }
 
-        private void loadUpDataFromBookingsFile()
+
+            private void loadUpDataFromBookingsFile()
         {
 
             //loop over each line of the file 

@@ -41,7 +41,7 @@
             this.bookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.makeBookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewBookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listView = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +53,8 @@
             this.bookingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1067, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -150,23 +151,25 @@
             this.viewBookingsToolStripMenuItem.Text = "View Bookings";
             this.viewBookingsToolStripMenuItem.Click += new System.EventHandler(this.viewBookingsToolStripMenuItem_Click);
             // 
-            // listView1
+            // listView
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(46, 102);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(527, 245);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(61, 126);
+            this.listView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(701, 301);
+            this.listView.TabIndex = 1;
+            this.listView.UseCompatibleStateImageBehavior = false;
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView1);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.listView);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainMenu";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
@@ -191,7 +194,7 @@
         private System.Windows.Forms.ToolStripMenuItem bookingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem makeBookingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewBookingsToolStripMenuItem;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView;
     }
 }
 

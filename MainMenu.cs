@@ -31,7 +31,7 @@ namespace OOPproject_form
 
         private void viewCustomersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            listView.Text = coord.viewAllCustomers();
         }
 
         private void deleteCustomerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace OOPproject_form
 
         private void viewFlightsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            listView.Text= coord.viewAllFlights();
         }
 
         private void viewAParticularFlightToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace OOPproject_form
 
         private void viewBookingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            listView.Text = coord.viewAllBookings();
         }
     }
 }

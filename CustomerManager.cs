@@ -30,6 +30,7 @@ namespace OOPproject_form
         {
             for (int i = 0; i < customerList.Length; i++)
             {
+                if (customerList[i] == null) { return -1; }
                 if (customerList[i].getCustomerID() == customerNumber)
                 {
                     return i;
