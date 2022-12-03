@@ -13,25 +13,27 @@ namespace OOPproject_form
         private Customer[] customerList;
         private int maxCustomers;
         private int numCustomers;
-        private int customerSeed;
-        private int numBookings;
+        int custID;
 
         public CustomerManager(int maxCustomers)
         {
             this.maxCustomers = maxCustomers;
             numCustomers = 0;
-            customerSeed = 1;
+            custID = 0;
             customerList = new Customer[maxCustomers];
-
+            loadUpDataFromCustomersFile();
         }
 
         public int search(int customerNumber)
         {
             for (int i = 0; i < customerList.Length; i++)
             {
-                if (customerList[i].getCustomerID() == customerNumber)
+                if (customerList[i] != null)
                 {
-                    return i;
+                    if (customerList[i].getCustomerID() == customerNumber)
+                    {
+                        return i;
+                    }
                 }
             }
             return -1;
@@ -41,7 +43,12 @@ namespace OOPproject_form
             return customerList[index];
         }
 
-        public bool addCustomer(string fname, string lname, string phoneNumber)
+        public Customer[] getCustomerList()
+        {
+            return customerList;
+        }
+
+        public bool addCustomer(string fname, string lname, string phoneNumber, int numBookings)
         {
             bool exists = false;
             if (numCustomers < maxCustomers)
@@ -58,10 +65,11 @@ namespace OOPproject_form
                 }
                 if (exists == false)
                 {
-                    customerList[numCustomers] = new Customer(fname, lname, phoneNumber);
-                    customerList[numCustomers].setCustomerId(customerSeed);
-                    customerSeed++;
+                    customerList[numCustomers] = new Customer(fname, lname, phoneNumber, numBookings);
+                    customerList[numCustomers].setCustomerId(custID + 1);
+                    custID++;
                     numCustomers++;
+                    updateCustomersFile();
                     return true;
                 }
                 else
@@ -107,6 +115,7 @@ namespace OOPproject_form
                 {
                     customerList[i] = customerList[i + 1];
                 }
+                updateCustomersFile();
                 return "Successfully deleted!";
             }
             return "The flight could not be deleted as it does not exist.";
@@ -142,36 +151,36 @@ namespace OOPproject_form
 
         }
 
-        //private void loadUpDataFromCustomersFile()
-        //{
+        private void loadUpDataFromCustomersFile()
+        {
 
-        //    //loop over each line of the file 
-        //    //turn the line into an array 
-        //    //use addCustomers() to add up the data
+            //loop over each line of the file 
+            //turn the line into an array 
+            //use addCustomers() to add up the data
 
-        //    // Read file using StreamReader. Reads file line by line   
-        //    try
-        //    {
-        //        using (StreamReader file = new StreamReader("./dataFiles/customers.txt"))
-        //        {
+            // Read file using StreamReader. Reads file line by line   
+            try
+            {
+                using (StreamReader file = new StreamReader("./dataFiles/customers.txt"))
+                {
 
-        //            string ln;
-        //            while ((ln = file.ReadLine()) != null)
-        //            {
-        //                // Console.WriteLine(ln);
-        //                string[] columns = ln.Split(",");
-        //                addCustomer(columns[1], columns[2], columns[3], int.Parse(columns[4]));
-        //            }
-        //            file.Close();
+                    string ln;
+                    while ((ln = file.ReadLine()) != null)
+                    {
+                        // Console.WriteLine(ln);
+                        string[] columns = ln.Split(",");
+                        addCustomer(columns[1], columns[2], columns[3], int.Parse(columns[4]));
+                    }
+                    file.Close();
 
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        throw;
-        //    }
-        //}
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
 
 

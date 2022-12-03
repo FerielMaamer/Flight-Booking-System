@@ -14,6 +14,11 @@ namespace OOPproject_form
         [STAThread]
         static void Main()
         {
+            //FlightManager fm = new FlightManager(100);
+            //CustomerManager cm = new CustomerManager(100);
+            //BookingManager bm = new BookingManager(100);
+            //Coordinator coord = new Coordinator(fm, cm, bm);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainMenu());

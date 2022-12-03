@@ -12,6 +12,7 @@ namespace OOPproject_form
 {
     public partial class MainMenu : Form
     {
+        
         public MainMenu()
         {
             InitializeComponent();
@@ -19,9 +20,9 @@ namespace OOPproject_form
 
         private void addCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddCustomer form = new AddCustomer();
+            AddCustomer form = new AddCustomer(coord);
             form.Show();
-
+            coord.addCustomer();
         }
 
         private void viewCustomersToolStripMenuItem_Click(object sender, EventArgs e)

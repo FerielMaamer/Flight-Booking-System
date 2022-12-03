@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project
+namespace OOPproject_form
 {
     internal class FlightManager
     {
         private Flight[] flightList;
         private int maxFlights;
         private int numFlights;
+        //private int flightSeed;
 
 
         public FlightManager(int maxFlights)
@@ -19,7 +20,7 @@ namespace project
             this.maxFlights = maxFlights;
             numFlights = 0;
             flightList = new Flight[maxFlights];
-            loadUpDataFromFlightsFile();
+            //flightSeed = 300;
         }
 
         public int search(int flightNumber)
@@ -48,7 +49,7 @@ namespace project
                 {
                     flightList[numFlights] = new Flight(flightNumber, capacity, origin, destination);
                     numFlights++;
-                    updateFlightsFile();
+                    //flightSeed++;
                     return true;
                 }
             }
@@ -88,7 +89,6 @@ namespace project
                 {
                     flightList[i] = flightList[i + 1];
                 }
-                updateFlightsFile();
                 return "Successfully deleted!";
             }
             return "The flight could not be deleted as it does not exist or has customers on it.";
@@ -124,28 +124,28 @@ namespace project
 
         }
 
-        private void loadUpDataFromFlightsFile()
-        {
+        //private void loadUpDataFromFlightsFile()
+        //{
 
-            //loop over each line of the file 
-            //turn the line into an array 
-            //use addFlights() to add up the data
+        //    //loop over each line of the file 
+        //    //turn the line into an array 
+        //    //use addFlights() to add up the data
 
-            // Read file using StreamReader. Reads file line by line    
-            using (StreamReader file = new StreamReader("./dataFiles/flights.txt"))
-            {
+        //    // Read file using StreamReader. Reads file line by line    
+        //    using (StreamReader file = new StreamReader("./dataFiles/flights.txt"))
+        //    {
 
-                string ln;
-                while ((ln = file.ReadLine()) != null)
-                {
-                    // Console.WriteLine(ln);
-                    string[] columns = ln.Split(",");
-                    addFlight(int.Parse(columns[0]), int.Parse(columns[1]), columns[2], columns[3]);
-                }
-                file.Close();
+        //        string ln;
+        //        while ((ln = file.ReadLine()) != null)
+        //        {
+        //            // Console.WriteLine(ln);
+        //            string[] columns = ln.Split(",");
+        //            addFlight(int.Parse(columns[0]), int.Parse(columns[1]), columns[2], columns[3]);
+        //        }
+        //        file.Close();
 
-            }
-        }
+        //    }
+        //}
 
 
     }

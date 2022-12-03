@@ -5,26 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project
+namespace OOPproject_form
 {
     internal class Coordinator
     {
         private FlightManager fm;
         private CustomerManager cm;
-        //private BookingManager bm;
-        private Booking[] bookingList;
-        private int maxBookings;
-        private int numBookings;
+        private BookingManager bm;
 
-        public Coordinator(FlightManager flightManager, CustomerManager customerManager, int maxBookings)
+        public Coordinator(FlightManager flightManager, CustomerManager customerManager, BookingManager bookingManager)
         {
             this.fm = flightManager;
             this.cm = customerManager;
-            //this.bm = bookingManager;
-            this.maxBookings = maxBookings;
-            numBookings = 0;
-            bookingList = new Booking[maxBookings];
-            loadUpDataFromBookingsFile();
+            this.bm = bookingManager;
         }
 
         //Flight class functions
@@ -50,9 +43,9 @@ namespace project
 
         // Customer class functions
 
-        public bool addCustomer(string fname, string lname, string phone, int numBookings)
+        public bool addCustomer(string fname, string lname, string phone)
         {
-            return cm.addCustomer(fname, lname, phone, numBookings);
+            return cm.addCustomer(fname, lname, phone);
         }
         public string viewAllCustomers()
         {
@@ -65,90 +58,20 @@ namespace project
 
         // Booking class functions
 
-        public int search(int bookingNumber)
-        {
-            /*cm.viewAllCustomers();
-            fm.viewAllFlights();*/
-
-            for (int i = 0; i < bookingList.Length; i++)
-            {
-                if (bookingList[i].getBookingNumber() == bookingNumber)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
 
         public bool addBooking(int customerID, int flightID)
         {
-            if (numBookings < maxBookings)
+            int flightIndex = fm.search(flightID);
+            int customerIndex = cm.search(customerID);
+            Flight flight = fm.findFlight(flightIndex);
+            Customer customer = cm.findCustomer(customerIndex);
+            if (flightIndex != -1 && customerIndex != -1 && fm.findFlight(flightIndex).flightHasSpace())
             {
-                int flightIndex = fm.search(flightID);
-                int customerIndex = cm.search(customerID);
-                //int index = search(bookingNumber);
-                if (flightIndex != -1 && customerIndex != -1 && fm.findFlight(flightIndex).flightHasSpace())
-                {
-                    bookingList[numBookings] = new Booking(cm.findCustomer(customerIndex), fm.findFlight(flightIndex));
-                    numBookings++;
-                    updateBookingsFile();
-                    return true;
-                }
-
-
+                return bm.addBooking(customer, flight);
             }
             return false;
         }
-
-        public string viewBooking(int bookingNumber)
-        {
-            int index = search(bookingNumber);
-            if (index == -1)
-            {
-                return $"There is no booking with the booking number: {bookingNumber}";
-            }
-            return bookingList[index].ToString();
-        }
-
-        public string viewAllBookings()
-        {
-            string s = "-------- Bookings --------\n";
-            for (int i = 0; i < numBookings; i++)
-            {
-                s += bookingList[i].ToString() + "\n";
-            }
-            return s;
-        }
-        private void updateBookingsFile()
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("./dataFiles/bookings.txt"))
-                {
-
-                    foreach (Booking b in bookingList)
-                    {
-                        if (b != null)
-                        {
-                            writer.WriteLine("{0},{1}", b.getCustomer().getCustomerID(), b.getFlight().getFlightNumber());
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    writer.Close();
-                }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-        }
+        
 
         private void loadUpDataFromBookingsFile()
         {
