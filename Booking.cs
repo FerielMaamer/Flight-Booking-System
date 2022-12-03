@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOPproject_form
 {
-    internal class Booking
+    public class Booking
     {
         private int bookingNumber = 0;
         private Customer customer;

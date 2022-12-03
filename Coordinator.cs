@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPproject_form
 {
-    internal class Coordinator
+    public class Coordinator
     {
         private FlightManager fm;
         private CustomerManager cm;
@@ -18,6 +18,9 @@ namespace OOPproject_form
             this.fm = flightManager;
             this.cm = customerManager;
             this.bm = bookingManager;
+            fm.loadupdatafromflightsfile();
+            cm.loadUpDataFromCustomersFile();
+            loadUpDataFromBookingsFile();
         }
 
         //Flight class functions
@@ -36,7 +39,7 @@ namespace OOPproject_form
         {
             return fm.viewFlight(flightNumber);
         }
-        public string deleteFlight(int flightNumber)
+        public bool deleteFlight(int flightNumber)
         {
             return fm.deleteFlight(flightNumber);
         }
@@ -51,7 +54,7 @@ namespace OOPproject_form
         {
             return cm.viewAllCustomers();
         }
-        public string deleteCustomer(int customerNumber)
+        public bool deleteCustomer(int customerNumber)
         {
             return cm.deleteCustomer(customerNumber);
         }
@@ -71,7 +74,7 @@ namespace OOPproject_form
             }
             return false;
         }
-        
+
 
         private void loadUpDataFromBookingsFile()
         {
@@ -83,21 +86,25 @@ namespace OOPproject_form
             // Read file using StreamReader. Reads file line by line   
             try
             {
-                using (StreamReader file = new StreamReader("./dataFiles/bookings.txt"))
+                string path = @".\\bookings.txt";
+                if (File.Exists(path))
                 {
-
-                    string ln;
-                    while ((ln = file.ReadLine()) != null)
+                    using (StreamReader file = new StreamReader(path))
                     {
-                        Console.WriteLine(ln);
-                        string[] columns = ln.Split(",");
-                        int cutId = int.Parse(columns[0]);
-                        int fId = int.Parse(columns[1]);
 
-                        addBooking(cutId, fId);
+                        string ln;
+                        while ((ln = file.ReadLine()) != null)
+                        {
+                            Console.WriteLine(ln);
+                            string[] columns = ln.Split(',');
+                            int cutId = int.Parse(columns[0]);
+                            int fId = int.Parse(columns[1]);
+
+                            addBooking(cutId, fId);
+                        }
+                        file.Close();
+
                     }
-                    file.Close();
-
                 }
             }
             catch (Exception e)

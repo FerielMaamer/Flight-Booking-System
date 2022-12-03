@@ -28,90 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.addBookingView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.bookingFlightId = new System.Windows.Forms.TextBox();
             this.bookingCustId = new System.Windows.Forms.TextBox();
             this.addBookingBtn = new System.Windows.Forms.Button();
+            this.addBookingMsg = new System.Windows.Forms.Label();
+            this.bookingList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
-            // 
-            // addBookingView
-            // 
-            this.addBookingView.HideSelection = false;
-            this.addBookingView.Location = new System.Drawing.Point(38, 53);
-            this.addBookingView.Name = "addBookingView";
-            this.addBookingView.Size = new System.Drawing.Size(279, 342);
-            this.addBookingView.TabIndex = 0;
-            this.addBookingView.UseCompatibleStateImageBehavior = false;
-            this.addBookingView.SelectedIndexChanged += new System.EventHandler(this.addBookingView_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(342, 53);
+            this.label1.Location = new System.Drawing.Point(456, 65);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(312, 13);
+            this.label1.Size = new System.Drawing.Size(382, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "To add a booking, enter the flight ID and the Customer ID below:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(359, 105);
+            this.label2.Location = new System.Drawing.Point(479, 129);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Flight ID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(359, 155);
+            this.label3.Location = new System.Drawing.Point(479, 191);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.Size = new System.Drawing.Size(80, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Customer ID";
             // 
             // bookingFlightId
             // 
-            this.bookingFlightId.Location = new System.Drawing.Point(476, 102);
+            this.bookingFlightId.Location = new System.Drawing.Point(635, 126);
+            this.bookingFlightId.Margin = new System.Windows.Forms.Padding(4);
             this.bookingFlightId.Name = "bookingFlightId";
-            this.bookingFlightId.Size = new System.Drawing.Size(133, 20);
+            this.bookingFlightId.Size = new System.Drawing.Size(176, 22);
             this.bookingFlightId.TabIndex = 4;
             this.bookingFlightId.TextChanged += new System.EventHandler(this.bookingFlightId_TextChanged);
             // 
             // bookingCustId
             // 
-            this.bookingCustId.Location = new System.Drawing.Point(476, 152);
+            this.bookingCustId.Location = new System.Drawing.Point(635, 187);
+            this.bookingCustId.Margin = new System.Windows.Forms.Padding(4);
             this.bookingCustId.Name = "bookingCustId";
-            this.bookingCustId.Size = new System.Drawing.Size(133, 20);
+            this.bookingCustId.Size = new System.Drawing.Size(176, 22);
             this.bookingCustId.TabIndex = 5;
             this.bookingCustId.TextChanged += new System.EventHandler(this.bookingCustId_TextChanged);
             // 
             // addBookingBtn
             // 
-            this.addBookingBtn.Location = new System.Drawing.Point(485, 225);
+            this.addBookingBtn.Location = new System.Drawing.Point(647, 277);
+            this.addBookingBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addBookingBtn.Name = "addBookingBtn";
-            this.addBookingBtn.Size = new System.Drawing.Size(113, 23);
+            this.addBookingBtn.Size = new System.Drawing.Size(151, 28);
             this.addBookingBtn.TabIndex = 6;
             this.addBookingBtn.Text = "Add Booking";
             this.addBookingBtn.UseVisualStyleBackColor = true;
             this.addBookingBtn.Click += new System.EventHandler(this.addBookingBtn_Click);
             // 
+            // addBookingMsg
+            // 
+            this.addBookingMsg.AutoSize = true;
+            this.addBookingMsg.ForeColor = System.Drawing.Color.Red;
+            this.addBookingMsg.Location = new System.Drawing.Point(633, 378);
+            this.addBookingMsg.Name = "addBookingMsg";
+            this.addBookingMsg.Size = new System.Drawing.Size(0, 16);
+            this.addBookingMsg.TabIndex = 7;
+            // 
+            // bookingList
+            // 
+            this.bookingList.HideSelection = false;
+            this.bookingList.Location = new System.Drawing.Point(28, 45);
+            this.bookingList.Name = "bookingList";
+            this.bookingList.Size = new System.Drawing.Size(397, 454);
+            this.bookingList.TabIndex = 9;
+            this.bookingList.UseCompatibleStateImageBehavior = false;
+            // 
             // MakeBooking
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.bookingList);
+            this.Controls.Add(this.addBookingMsg);
             this.Controls.Add(this.addBookingBtn);
             this.Controls.Add(this.bookingCustId);
             this.Controls.Add(this.bookingFlightId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.addBookingView);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MakeBooking";
             this.Text = "BookingMenu";
             this.ResumeLayout(false);
@@ -120,13 +137,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView addBookingView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox bookingFlightId;
         private System.Windows.Forms.TextBox bookingCustId;
         private System.Windows.Forms.Button addBookingBtn;
+        private System.Windows.Forms.Label addBookingMsg;
+        private System.Windows.Forms.ListView bookingList;
     }
 }

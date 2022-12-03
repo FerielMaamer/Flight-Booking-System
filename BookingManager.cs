@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPproject_form
 {
-    internal class BookingManager
+    public class BookingManager
     {
         private Booking[] bookingList;
         private int maxBookings;
@@ -46,6 +46,7 @@ namespace OOPproject_form
                     customer.setNumBookings(1);
                     numBookings++;
                     bookingSeed++;
+                    updateBookingsFile();
                     return true;
                 }
             }
@@ -76,9 +77,10 @@ namespace OOPproject_form
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter("./dataFiles/bookings.txt"))
+                string path = @".\\bookings.txt";
+                if (!File.Exists(path)) { File.Create(path); }
+                using (StreamWriter writer = new StreamWriter(path))
                 {
-
                     foreach (Booking b in bookingList)
                     {
                         if (b != null)

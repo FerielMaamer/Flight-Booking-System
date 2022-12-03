@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OOPproject_form
 {
-    internal class CustomerManager
+    public class CustomerManager
     {
         private Customer[] customerList;
         private int maxCustomers;
@@ -22,6 +22,7 @@ namespace OOPproject_form
             numCustomers = 0;
             customerSeed = 1;
             customerList = new Customer[maxCustomers];
+           //loadUpDataFromCustomersFile();
 
         }
 
@@ -96,7 +97,7 @@ namespace OOPproject_form
             return customerList[customerID].ToString() + "\n";
         }      */
 
-        public string deleteCustomer(int customerNumber)
+        public bool deleteCustomer(int customerNumber)
         {
             int index = search(customerNumber);
             int numBookings = customerList[index].getNumBookings();
@@ -107,23 +108,26 @@ namespace OOPproject_form
                 {
                     customerList[i] = customerList[i + 1];
                 }
-                return "Successfully deleted!";
+                updateCustomersFile();
+                return true;
             }
-            return "The flight could not be deleted as it does not exist.";
+            return false;
         }
 
 
-        private void updateCustomersFile()
+        public void updateCustomersFile()
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter("./dataFiles/customers.txt"))
+                string path = @".\\customers.txt";
+                if (!File.Exists(path)) { File.Create(path); }
+                using (StreamWriter writer = new StreamWriter(path))
                 {
                     foreach (Customer c in customerList)
                     {
                         if (c != null)
                         {
-                            writer.WriteLine("{0},{1},{2},{3},{4}", c.getCustomerID().ToString(), c.getFname(), c.getLname(), c.getPhoneNum(), c.getNumBookings());
+                            writer.WriteLine("{0},{1},{2},{3},{4}", c.getCustomerID().ToString(), c.getFname(), c.getLname(), c.getPhoneNum());
                         }
                         else
                         {
@@ -142,36 +146,35 @@ namespace OOPproject_form
 
         }
 
-        //private void loadUpDataFromCustomersFile()
-        //{
+        public void loadUpDataFromCustomersFile()
+        {
+  
+            try
+            {
+                string path = @".\\customers.txt";
+                if (File.Exists(path))
+                {
+                    using (StreamReader file = new StreamReader(path))
+                    {
 
-        //    //loop over each line of the file 
-        //    //turn the line into an array 
-        //    //use addCustomers() to add up the data
+                        string ln;
+                        while ((ln = file.ReadLine()) != null)
+                        {
+                            // Console.WriteLine(ln);
+                            string[] columns = ln.Split(',');
+                            addCustomer(columns[1], columns[2], columns[3]);
+                        }
+                        file.Close();
 
-        //    // Read file using StreamReader. Reads file line by line   
-        //    try
-        //    {
-        //        using (StreamReader file = new StreamReader("./dataFiles/customers.txt"))
-        //        {
-
-        //            string ln;
-        //            while ((ln = file.ReadLine()) != null)
-        //            {
-        //                // Console.WriteLine(ln);
-        //                string[] columns = ln.Split(",");
-        //                addCustomer(columns[1], columns[2], columns[3], int.Parse(columns[4]));
-        //            }
-        //            file.Close();
-
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        throw;
-        //    }
-        //}
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
 
 

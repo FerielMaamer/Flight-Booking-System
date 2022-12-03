@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace OOPproject_form
 {
-    internal class FlightManager
+    public class FlightManager
     {
         private Flight[] flightList;
         private int maxFlights;
         private int numFlights;
         //private int flightSeed;
+        
 
 
         public FlightManager(int maxFlights)
@@ -21,6 +22,7 @@ namespace OOPproject_form
             numFlights = 0;
             flightList = new Flight[maxFlights];
             //flightSeed = 300;
+            //loadupdatafromflightsfile();
         }
 
         public int search(int flightNumber)
@@ -48,8 +50,10 @@ namespace OOPproject_form
                 if (search(flightNumber) == -1)
                 {
                     flightList[numFlights] = new Flight(flightNumber, capacity, origin, destination);
-                    numFlights++;
+                    
                     //flightSeed++;
+                    updateFlightsFile();
+                    numFlights++;
                     return true;
                 }
             }
@@ -80,7 +84,7 @@ namespace OOPproject_form
             return flightList[index].ToString();
         }
 
-        public string deleteFlight(int flightNumber)
+        public bool deleteFlight(int flightNumber)
         {
             int index = search(flightNumber);
             if (index != -1 && flightList[index].getNumCustomers() == 0)
@@ -89,18 +93,21 @@ namespace OOPproject_form
                 {
                     flightList[i] = flightList[i + 1];
                 }
-                return "Successfully deleted!";
+                updateFlightsFile();
+                return true;
             }
-            return "The flight could not be deleted as it does not exist or has customers on it.";
+            return false;
         }
 
-        private void updateFlightsFile()
+        public void updateFlightsFile()
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter("./dataFiles/flights.txt"))
-                {
+                string path = @".\\flights.txt";
+                if (!File.Exists(path)){File.Create(path); }
 
+                using (StreamWriter writer = new StreamWriter(path))
+                {
                     foreach (Flight f in flightList)
                     {
                         if (f != null)
@@ -114,38 +121,41 @@ namespace OOPproject_form
                     }
                     writer.Close();
                 }
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
+
 
         }
 
-        //private void loadUpDataFromFlightsFile()
-        //{
+        public void loadupdatafromflightsfile()
+        {
 
-        //    //loop over each line of the file 
-        //    //turn the line into an array 
-        //    //use addFlights() to add up the data
+            //loop over each line of the file 
+            //turn the line into an array 
+            //use addflights() to add up the data
 
-        //    // Read file using StreamReader. Reads file line by line    
-        //    using (StreamReader file = new StreamReader("./dataFiles/flights.txt"))
-        //    {
+            // read file using streamreader. reads file line by line
+            string path = @".\\flights.txt";
+            if (File.Exists(path))
+            {
+                using (StreamReader file = new StreamReader(path))
+                {
 
-        //        string ln;
-        //        while ((ln = file.ReadLine()) != null)
-        //        {
-        //            // Console.WriteLine(ln);
-        //            string[] columns = ln.Split(",");
-        //            addFlight(int.Parse(columns[0]), int.Parse(columns[1]), columns[2], columns[3]);
-        //        }
-        //        file.Close();
+                    string ln;
+                    while ((ln = file.ReadLine()) != null)
+                    {
 
-        //    }
-        //}
+                        string[] columns = ln.Split(',');
+                        addFlight(int.Parse(columns[0]), int.Parse(columns[1]), columns[2], columns[3]);
+                    }
+                    file.Close();
+
+                }
+            }
+        }
 
 
     }

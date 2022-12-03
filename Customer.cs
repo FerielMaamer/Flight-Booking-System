@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOPproject_form
 {
-    internal class Customer
+    public class Customer
     {
         private int id;
         private string fname;

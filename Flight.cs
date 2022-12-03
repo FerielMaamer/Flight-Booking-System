@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOPproject_form
 {
-    internal class Flight
+    public class Flight
     {
         private int flightNumber;
         private string origin;

@@ -12,17 +12,21 @@ namespace OOPproject_form
 {
     public partial class MainMenu : Form
     {
-        
+        private FlightManager fm = new FlightManager(100);
+        private CustomerManager cm = new CustomerManager(100);
+        private BookingManager bm = new BookingManager(100);
+        public Coordinator coord;
         public MainMenu()
         {
             InitializeComponent();
+            coord = new Coordinator(fm, cm, bm);
+
         }
 
         private void addCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddCustomer form = new AddCustomer(coord);
             form.Show();
-            coord.addCustomer();
         }
 
         private void viewCustomersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,13 +36,13 @@ namespace OOPproject_form
 
         private void deleteCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteCustomer form = new DeleteCustomer();
+            DeleteCustomer form = new DeleteCustomer(coord);
             form.Show();
         }
 
         private void addFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFlight form = new AddFlight();
+            AddFlight form = new AddFlight(coord);
             form.Show();
         }
 
@@ -49,19 +53,19 @@ namespace OOPproject_form
 
         private void viewAParticularFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewFlight form = new ViewFlight();
+            ViewFlight form = new ViewFlight(coord);
             form.Show();
         }
 
         private void deleteFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteFlight form = new DeleteFlight();
+            DeleteFlight form = new DeleteFlight(coord);
             form.Show();
         }
 
         private void makeBookingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MakeBooking form = new MakeBooking();
+            MakeBooking form = new MakeBooking(coord);
             form.Show();
         }
 

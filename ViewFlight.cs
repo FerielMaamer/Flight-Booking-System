@@ -12,9 +12,11 @@ namespace OOPproject_form
 {
     public partial class ViewFlight : Form
     {
-        public ViewFlight()
+        private Coordinator coord;
+        public ViewFlight(Coordinator coord)
         {
             InitializeComponent();
+            this.coord = coord;
         }
     }
 }

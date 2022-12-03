@@ -7,24 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection.Emit;
 
 namespace OOPproject_form
 {
     public partial class AddFlight : Form
     {
-        static int flightNumber;
-        static string origin;
-        static string destination;
-        static int capacity;
-        public AddFlight()
+        private Coordinator coord;
+        private int flightNumber;
+        private string origin;
+        private string destination;
+        private int capacity;
+        private string message = "";
+        private bool added = false;
+        public AddFlight(Coordinator coord)
         {
             InitializeComponent();
+            this.coord = coord;
         }
 
         private void flightNumBtn_TextChanged(object sender, EventArgs e)
         {
             flightNumber = Convert.ToInt32(flightNumBtn.Text);
-
         }
 
         private void flightOrgBtn_TextChanged(object sender, EventArgs e)
@@ -44,7 +48,10 @@ namespace OOPproject_form
 
         private void addFlightbtn_Click(object sender, EventArgs e)
         {
-            
+            added = coord.addFlight(flightNumber, capacity, origin, destination);
+            message = added ? "successfully added" : "was not able to add";
+            addFlightMsg.Text = message;
+
         }
     }
 }
