@@ -22,7 +22,7 @@ namespace OOPproject_form
             numFlights = 0;
             flightList = new Flight[maxFlights];
             //flightSeed = 300;
-            //loadupdatafromflightsfile();
+            loadupdatafromflightsfile();
         }
 
         public int search(int flightNumber)
@@ -149,7 +149,8 @@ namespace OOPproject_form
                     {
 
                         string[] columns = ln.Split(',');
-                        addFlight(int.Parse(columns[0]), int.Parse(columns[1]), columns[2], columns[3]);
+                        flightList[numFlights] = new Flight(int.Parse(columns[0]), int.Parse(columns[1]), columns[2], columns[3]);
+                        numFlights++;
                     }
                     file.Close();
 

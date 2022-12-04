@@ -46,5 +46,9 @@ namespace OOPproject_form
             message = added ? "successfully added" : "was not able to add";
             addCustMsg.Text = message;
         }
+        void FormClosed(object sender, FormClosedEventArgs e)
+        {
+            coord.updateCustomersFile();
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace OOPproject_form
             numCustomers = 0;
             customerSeed = 1;
             customerList = new Customer[maxCustomers];
-           //loadUpDataFromCustomersFile();
+            loadUpDataFromCustomersFile();
 
         }
 
@@ -164,7 +164,8 @@ namespace OOPproject_form
                         {
                             // Console.WriteLine(ln);
                             string[] columns = ln.Split(',');
-                            addCustomer(columns[1], columns[2], columns[3]);
+                            customerList[numCustomers]= new Customer (columns[1], columns[2], columns[3]);
+                            numCustomers++;
                         }
                         file.Close();
 

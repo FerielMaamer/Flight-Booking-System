@@ -18,8 +18,6 @@ namespace OOPproject_form
             this.fm = flightManager;
             this.cm = customerManager;
             this.bm = bookingManager;
-            fm.loadupdatafromflightsfile();
-            cm.loadUpDataFromCustomersFile();
             loadUpDataFromBookingsFile();
         }
 
@@ -58,11 +56,16 @@ namespace OOPproject_form
         {
             return cm.deleteCustomer(customerNumber);
         }
+        public void updateCustomersFile()
+        {
+            cm.updateCustomersFile();
 
-        // Booking class functions
+        }
+
+            // Booking class functions
 
 
-        public bool addBooking(int customerID, int flightID)
+            public bool addBooking(int customerID, int flightID)
         {
             int flightIndex = fm.search(flightID);
             int customerIndex = cm.search(customerID);
