@@ -35,7 +35,7 @@
             this.bookingCustId = new System.Windows.Forms.TextBox();
             this.addBookingBtn = new System.Windows.Forms.Button();
             this.addBookingMsg = new System.Windows.Forms.Label();
-            this.bookingList = new System.Windows.Forms.ListView();
+            this.bookingTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -106,21 +106,20 @@
             this.addBookingMsg.Size = new System.Drawing.Size(0, 16);
             this.addBookingMsg.TabIndex = 7;
             // 
-            // bookingList
+            // bookingTextBox
             // 
-            this.bookingList.HideSelection = false;
-            this.bookingList.Location = new System.Drawing.Point(28, 45);
-            this.bookingList.Name = "bookingList";
-            this.bookingList.Size = new System.Drawing.Size(397, 454);
-            this.bookingList.TabIndex = 9;
-            this.bookingList.UseCompatibleStateImageBehavior = false;
+            this.bookingTextBox.Location = new System.Drawing.Point(31, 28);
+            this.bookingTextBox.Name = "bookingTextBox";
+            this.bookingTextBox.Size = new System.Drawing.Size(392, 448);
+            this.bookingTextBox.TabIndex = 8;
+            this.bookingTextBox.Text = "";
             // 
             // MakeBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.bookingList);
+            this.Controls.Add(this.bookingTextBox);
             this.Controls.Add(this.addBookingMsg);
             this.Controls.Add(this.addBookingBtn);
             this.Controls.Add(this.bookingCustId);
@@ -144,6 +143,6 @@
         private System.Windows.Forms.TextBox bookingCustId;
         private System.Windows.Forms.Button addBookingBtn;
         private System.Windows.Forms.Label addBookingMsg;
-        private System.Windows.Forms.ListView bookingList;
+        private System.Windows.Forms.RichTextBox bookingTextBox;
     }
 }

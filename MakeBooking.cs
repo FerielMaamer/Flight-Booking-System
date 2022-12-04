@@ -21,12 +21,7 @@ namespace OOPproject_form
         {
             InitializeComponent();
             this.coord = coord;
-            bookingList.Text = coord.viewAllFlights() + coord.viewAllCustomers();
-        }
-
-        private void addBookingView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+            bookingTextBox.Text = coord.viewAllFlights() + coord.viewAllCustomers();
         }
 
         private void bookingFlightId_TextChanged(object sender, EventArgs e)
@@ -44,7 +39,7 @@ namespace OOPproject_form
            
             added = coord.addBooking(custId, flightId);
             message = added ? "successfully added" : "was not able to add";
-            addBookingMsg.Text = coord.viewAllFlights() + coord.viewAllCustomers();
+            addBookingMsg.Text = message;
         }
     }
 }

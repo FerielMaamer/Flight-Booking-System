@@ -32,7 +32,7 @@
             this.viewFlightId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.viewFlightBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.flightTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -48,7 +48,7 @@
             // viewFlightId
             // 
             this.viewFlightId.Location = new System.Drawing.Point(205, 108);
-            this.viewFlightId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.viewFlightId.Margin = new System.Windows.Forms.Padding(4);
             this.viewFlightId.Name = "viewFlightId";
             this.viewFlightId.Size = new System.Drawing.Size(165, 22);
             this.viewFlightId.TabIndex = 1;
@@ -75,24 +75,25 @@
             this.viewFlightBtn.UseVisualStyleBackColor = true;
             this.viewFlightBtn.Click += new System.EventHandler(this.viewFlightBtn_Click);
             // 
-            // textBox1
+            // flightTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(318, 295);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 5;
+            this.flightTextBox.Location = new System.Drawing.Point(88, 248);
+            this.flightTextBox.Name = "flightTextBox";
+            this.flightTextBox.Size = new System.Drawing.Size(426, 249);
+            this.flightTextBox.TabIndex = 5;
+            this.flightTextBox.Text = "";
             // 
             // ViewFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.flightTextBox);
             this.Controls.Add(this.viewFlightBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.viewFlightId);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ViewFlight";
             this.Text = "ViewFlight";
             this.ResumeLayout(false);
@@ -106,6 +107,6 @@
         private System.Windows.Forms.TextBox viewFlightId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button viewFlightBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RichTextBox flightTextBox;
     }
 }
