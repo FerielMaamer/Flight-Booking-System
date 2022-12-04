@@ -20,6 +20,8 @@ namespace OOPproject_form
             numBookings = 0;
             bookingList = new Booking[maxBookings];
             bookingSeed = 2000;
+            createFile();
+            
         }
 
         public int search(int bookingNumber)
@@ -74,7 +76,12 @@ namespace OOPproject_form
             return s;
         }
 
-        private void updateBookingsFile()
+        public void createFile()
+        {
+            string path = @".\\bookings.txt";
+            if (!File.Exists(path)) { File.Create(path); }
+        }
+        public void updateBookingsFile()
         {
             try
             {
@@ -111,5 +118,50 @@ namespace OOPproject_form
             numBookings++;
         }
 
+        public void loadUpDataFromBookingsFile(FlightManager fm, CustomerManager cm)
+        {
+
+            //loop over each line of the file 
+            //turn the line into an array 
+            //use addCustomers() to add up the data
+
+            // Read file using StreamReader. Reads file line by line   
+            try
+            {
+                string path = @".\\bookings.txt";
+                if (File.Exists(path))
+                {
+                    using (StreamReader file = new StreamReader(path))
+                    {
+
+                        string ln;
+                        while ((ln = file.ReadLine()) != null)
+                        {
+                            Console.WriteLine(ln);
+                            string[] columns = ln.Split(',');
+                            int cutId = int.Parse(columns[0]);
+                            int fId = int.Parse(columns[1]);
+
+                            int flightId = fm.search(fId);
+                            int custId = cm.search(cutId);
+                            if (flightId != -1 && custId != -1)
+                            {
+
+                                bookingList[numBookings] = new Booking(cm.findCustomer(custId), fm.findFlight(flightId));
+                                numBookings++;
+                            }
+                        }
+                        file.Close();
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
+
+    }
 }

@@ -18,7 +18,7 @@ namespace OOPproject_form
             this.fm = flightManager;
             this.cm = customerManager;
             this.bm = bookingManager;
-            loadUpDataFromBookingsFile();
+            loadUpDataFromBookingsFile(); 
         }
 
         //Flight class functions
@@ -69,11 +69,16 @@ namespace OOPproject_form
         {
             int flightIndex = fm.search(flightID);
             int customerIndex = cm.search(customerID);
-            Flight flight = fm.findFlight(flightIndex);
-            Customer customer = cm.findCustomer(customerIndex);
-            if (flightIndex != -1 && customerIndex != -1 && fm.findFlight(flightIndex).flightHasSpace())
+            
+            if (flightIndex != -1 && customerIndex != -1 )
             {
-                return bm.addBooking(customer, flight);
+                Flight flight = fm.findFlight(flightIndex);
+                Customer customer = cm.findCustomer(customerIndex);
+                if (fm.findFlight(flightIndex).flightHasSpace())
+                {
+                    return bm.addBooking(customer, flight);
+                }
+                
             }
             return false;
         }
@@ -84,47 +89,10 @@ namespace OOPproject_form
         }
 
 
-            private void loadUpDataFromBookingsFile()
+        public void loadUpDataFromBookingsFile()
         {
-
-            //loop over each line of the file 
-            //turn the line into an array 
-            //use addCustomers() to add up the data
-
-            // Read file using StreamReader. Reads file line by line   
-            try
-            {
-                string path = @".\\bookings.txt";
-                if (File.Exists(path))
-                {
-                    using (StreamReader file = new StreamReader(path))
-                    {
-
-                        string ln;
-                        while ((ln = file.ReadLine()) != null)
-                        {
-                            Console.WriteLine(ln);
-                            string[] columns = ln.Split(',');
-                            int cutId = int.Parse(columns[0]);
-                            int fId = int.Parse(columns[1]);
-
-                            int flightId = fm.search(fId);
-                            int custId = cm.search(cutId);
-                            if (flightId!= -1 && custId != -1)
-                            {
-                                bm.addBookingFromFile(cm.findCustomer(custId), fm.findFlight(flightId));
-                            }
-                        }
-                        file.Close();
-
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            bm.loadUpDataFromBookingsFile(fm, cm);
+            
         }
 
 

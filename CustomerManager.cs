@@ -45,6 +45,7 @@ namespace OOPproject_form
         }
         public Customer findCustomer(int index)
         {
+            
             return customerList[index];
         }
 
