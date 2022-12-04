@@ -23,6 +23,11 @@ namespace OOPproject_form
             customerSeed = 1;
             customerList = new Customer[maxCustomers];
             loadUpDataFromCustomersFile();
+            //foreach (Customer customer in customerList)
+            //{
+            //    Console.WriteLine(customer);
+            //}
+            
 
         }
 
@@ -165,7 +170,9 @@ namespace OOPproject_form
                             // Console.WriteLine(ln);
                             string[] columns = ln.Split(',');
                             customerList[numCustomers]= new Customer (columns[1], columns[2], columns[3]);
+                            customerList[numCustomers].setCustomerId(customerSeed);
                             numCustomers++;
+                            customerSeed++;
                         }
                         file.Close();
 

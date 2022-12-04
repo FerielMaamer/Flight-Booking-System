@@ -26,6 +26,7 @@ namespace OOPproject_form
         {
             for (int i = 0; i < bookingList.Length; i++)
             {
+                if (bookingList[i] == null) { return -1; }
                 if (bookingList[i].getBookingNumber() == bookingNumber)
                 {
                     return i;
@@ -103,5 +104,12 @@ namespace OOPproject_form
             }
 
         }
-    }
+        
+        public void addBookingFromFile(Customer customer,Flight flight)
+        {
+            bookingList[numBookings] = new Booking(customer, flight);
+            numBookings++;
+        }
+
+        }
 }

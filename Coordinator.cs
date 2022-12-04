@@ -108,7 +108,12 @@ namespace OOPproject_form
                             int cutId = int.Parse(columns[0]);
                             int fId = int.Parse(columns[1]);
 
-                            addBooking(cutId, fId);
+                            int flightId = fm.search(fId);
+                            int custId = cm.search(cutId);
+                            if (flightId!= -1 && custId != -1)
+                            {
+                                bm.addBookingFromFile(cm.findCustomer(custId), fm.findFlight(flightId));
+                            }
                         }
                         file.Close();
 
