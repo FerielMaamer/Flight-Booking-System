@@ -25,7 +25,7 @@ namespace OOPproject_form
         }
         private void viewFlightBtn_Click(object sender, EventArgs e)
         {
-            lvViewFlight.Text = coord.viewFlight(flightId);
+            textBox1.Text = coord.viewFlight(flightId);
         }
 
         

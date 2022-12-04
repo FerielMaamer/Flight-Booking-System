@@ -64,6 +64,7 @@ namespace OOPproject_form
                     customerList[numCustomers].setCustomerId(customerSeed);
                     customerSeed++;
                     numCustomers++;
+                    updateCustomersFile();
                     return true;
                 }
                 else
@@ -128,7 +129,7 @@ namespace OOPproject_form
                     {
                         if (c != null)
                         {
-                            writer.WriteLine("{0},{1},{2},{3},{4}", c.getCustomerID().ToString(), c.getFname(), c.getLname(), c.getPhoneNum());
+                            writer.WriteLine("{0},{1},{2},{3}", c.getCustomerID().ToString(), c.getFname(), c.getLname(), c.getPhoneNum());
                         }
                         else
                         {
@@ -176,9 +177,6 @@ namespace OOPproject_form
                 throw;
             }
         }
-
-
-
 
     }
 }
